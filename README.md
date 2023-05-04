@@ -2,6 +2,11 @@
 Gesture recognition using a visual camera on a Turtlebot3 Burger.
 
 # Turtlebot3 Setup
+- [Required Resources](#required-resources)
+- [Configure Remote PC](#configure-remote-pc)
+- [Configure the TurtleBot3](#configure-the-turtlebot3)
+- [Connect to the TurtleBot3 from the Remote PC](#connect-to-the-turtlebot3-from-the-remote-pc)
+
 The procedure presented here was developed after pouring through documentaiton and after much trial and error. The main resourse used as a reference is the official Turtlebot [emanual](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup). Some additional steps are included in this procedure that were not very explicit in the emanual.
 ## Required Resources:
 - Turtlebot3 Burger running ROS Noetic and Ubuntu 20.04
