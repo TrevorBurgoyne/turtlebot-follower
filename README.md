@@ -1,6 +1,38 @@
 # turtlebot-follower
 Gesture recognition using a visual camera on a Turtlebot3 Burger.
 
+# Run Instructions
+Note: Be sure to run this command in every terminal wherein you want to run ros commands. This can be set up to occur automatically by following the steps [here](https://answers.ros.org/question/206876/how-often-do-i-need-to-source-setupbash/).
+
+    >> `source /opt/ros/noetic/setup.bash`  
+
+The following instructions assume you have already set up your Remote PC and Turtlebot. If you're not sure if you've already done that, see the instructions provided in [Turtlebot3 Setup](#turtlebot3-setup).
+
+1. In a Remote PC terminal, start the core ROS program by running:
+
+        >> roscore
+
+2. Start a remote connection with the TurtleBot from the PC by opening a new terminal window and running:
+        
+        >> ssh ubuntu@IP_OF_ROBOT
+
+3. Login to the Turtlebot by using:
+
+        password:
+        >> turtlebot
+
+4. Prepare the robot to receive commands by bringing up the robot:
+
+        >> export TURTLEBOT3_MODEL=burger
+        >> roslaunch turtlebot3_bringup turtlebot3_robot.launch
+
+5. In another Remote PC terminal, navigate to `turtlebot-follower/` and run:
+
+        >> catkin_make
+        >> source devel/setup.bash
+        >> rosrun follower follower.py
+This will begin the routine implemented in `src/follower/src/follower.py`.
+
 # Turtlebot3 Setup
 - [Required Resources](#required-resources)
 - [Configure Remote PC](#configure-remote-pc)
