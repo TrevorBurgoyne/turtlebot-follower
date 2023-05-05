@@ -122,7 +122,15 @@ On the PC, do the following:
         
         >> source ~/.bashrc
     
-    Now that the robot is configured, you can unplug the peripherals. For any future changes on the robot, we can ssh into the raspberry pi (as long as it's turned on and on the same network). 
+9. Download the usb camera package `cv_camera` if not already present on the Turtlebot3 so we can use the camera. 
+
+        >> sudo apt install ros-noetic-cv-camera
+
+    
+10. Create a launch file that starts the camera node along with the core Turtlebot sensors. See `src/follower/follower.launch` in this repo for the file to add. For consistency, it would probably be best to just install this repo on the turtlebot if possible. For further details on installing the camera, see [here](https://www.theconstructsim.com/how-to-install-a-usb-camera-in-turtlebot3/). 
+    
+    
+Now that the robot is configured, you can unplug the peripherals. For any future changes on the robot, we can ssh into the raspberry pi (as long as it's turned on and on the same network). 
 
 ## Connect to the TurtleBot3 from the Remote PC
 Now both the PC and robot are configured such that ROS will be able to connect them and run programs. Instructions for doing different tasks (ie tele-op) can be found in the TurtleBot3 tutorials. It's mostly a matter of copy-pasting the commands they list in the right order.
