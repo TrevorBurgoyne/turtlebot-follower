@@ -4,7 +4,7 @@ Gesture recognition using a visual camera on a Turtlebot3 Burger.
 # Run Instructions
 Note: Be sure to run this command in every terminal wherein you want to run ros commands. This can be set up to occur automatically by following the steps [here](https://answers.ros.org/question/206876/how-often-do-i-need-to-source-setupbash/).
 
-    >> `source /opt/ros/noetic/setup.bash`  
+    >> source /opt/ros/noetic/setup.bash  
 
 The following instructions assume you have already set up your Remote PC and Turtlebot. If you're not sure if you've already done that, see the instructions provided in [Turtlebot3 Setup](#turtlebot3-setup).
 
