@@ -23,8 +23,13 @@ The following instructions assume you have already set up your Remote PC and Tur
 
 4. Prepare the robot to receive commands by bringing up the robot:
 
+        >> cd catkin_ws
+        >> catkin_make
+        >> source devel/setup.bash
         >> export TURTLEBOT3_MODEL=burger
-        >> roslaunch turtlebot3_bringup turtlebot3_robot.launch
+        >> roslaunch follower follower.launch
+
+   The launch command assumes that the Turtlebot directory is setup with the `follower` package as described in the Turtlebot configuration [instuctions](#configure-the-turtlebot3).
 
 5. In another Remote PC terminal, navigate to `turtlebot-follower/` and run:
 
@@ -127,7 +132,17 @@ On the PC, do the following:
         >> sudo apt install ros-noetic-cv-camera
 
     
-10. Create a launch file that starts the camera node along with the core Turtlebot sensors. See `src/follower/follower.launch` in this repo for the file to add. For consistency, it would probably be best to just install this repo on the turtlebot if possible. For further details on installing the camera, see [here](https://www.theconstructsim.com/how-to-install-a-usb-camera-in-turtlebot3/). 
+10. Create a launch file that starts the camera node along with the core Turtlebot sensors. See `src/follower/follower.launch` in this repo for the file to add. Additionally, make sure to add an appropiate `CMakeLists.txt` and `package.xml` so that the package can be detected. For the launch commands in [Run Instructions](#run-instructions) to function properly, be sure to set up the directory as follows:
+
+        catkin_ws/
+            src/
+                follower/
+                    src/
+                    CMakeLists.txt
+                    follower.launch
+                    package.xml    
+
+For further details on installing the camera, see [here](https://www.theconstructsim.com/how-to-install-a-usb-camera-in-turtlebot3/). 
     
     
 Now that the robot is configured, you can unplug the peripherals. For any future changes on the robot, we can ssh into the raspberry pi (as long as it's turned on and on the same network). 
