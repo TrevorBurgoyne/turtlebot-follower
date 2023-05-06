@@ -46,7 +46,8 @@ class Follower():
         print(cv_image_norm.shape)
         
         # Run Pose Detection
-        frame = cv2.cvtColor(current_frame, cv2.COLOR_BGR2RGB)
+        # frame = cv2.cvtColor(current_frame, cv2.COLOR_BGR2RGB)
+        frame = current_frame
 
         # Flip the frame horizontally for natural (selfie-view) visualization.
         frame = cv2.flip(frame, 1)

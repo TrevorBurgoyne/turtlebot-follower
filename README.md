@@ -1,12 +1,12 @@
 # turtlebot-follower
-Gesture recognition using a visual camera on a Turtlebot3 Burger.
+Gesture-recognition-activated person following using a visual camera on a TurtleBot3 Burger.
 
 # Run Instructions
 Note: Be sure to run this command in every terminal wherein you want to run ros commands. This can be set up to occur automatically by following the steps [here](https://answers.ros.org/question/206876/how-often-do-i-need-to-source-setupbash/).
 
     >> source /opt/ros/noetic/setup.bash  
 
-The following instructions assume you have already set up your Remote PC and Turtlebot. If you're not sure if you've already done that, see the instructions provided in [Turtlebot3 Setup](#turtlebot3-setup).
+The following instructions assume you have already set up your Remote PC and TurtleBot. If you're not sure if you've already done that, see the instructions provided in [TurtleBot3 Setup](#turtlebot3-setup).
 
 1. In a Remote PC terminal, start the core ROS program by running:
 
@@ -16,7 +16,7 @@ The following instructions assume you have already set up your Remote PC and Tur
         
         >> ssh ubuntu@IP_OF_ROBOT
 
-3. Login to the Turtlebot by using:
+3. Login to the TurtleBot by using:
 
         password:
         >> turtlebot
@@ -31,9 +31,9 @@ The following instructions assume you have already set up your Remote PC and Tur
 
         >> roslaunch follower follower.launch
 
-   This command starts the camera. The launch command assumes that the Turtlebot directory is setup with the `follower` package as described in the Turtlebot configuration [instuctions](#configure-the-turtlebot3).
+   This command starts the camera. The launch command assumes that the TurtleBot directory is setup with the `follower` package as described in the TurtleBot configuration [instuctions](#configure-the-turtlebot3).
 
-5. In another window, connect to the Turtlebot again and run the standard bringup:
+5. In another window, connect to the TurtleBot again and run the standard bringup:
 
         >> export TURTLEBOT3_MODEL=burger
         >> roslaunch turtlebot3_bringup turtlebot3_robot.launch
@@ -45,15 +45,15 @@ The following instructions assume you have already set up your Remote PC and Tur
         >> rosrun follower follower.py
 This will begin the routine implemented in `src/follower/src/follower.py`.
 
-# Turtlebot3 Setup
+# TurtleBot3 Setup
 - [Required Resources](#required-resources)
 - [Configure Remote PC](#configure-remote-pc)
 - [Configure the TurtleBot3](#configure-the-turtlebot3)
 - [Connect to the TurtleBot3 from the Remote PC](#connect-to-the-turtlebot3-from-the-remote-pc)
 
-The procedure presented here was developed after pouring through documentaiton and after much trial and error. The main resourse used as a reference is the official Turtlebot [emanual](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup). Some additional steps are included in this procedure that were not very explicit in the emanual.
+The procedure presented here was developed after pouring through documentaiton and after much trial and error. The main resourse used as a reference is the official TurtleBot [emanual](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup). Some additional steps are included in this procedure that were not very explicit in the emanual.
 ## Required Resources:
-- Turtlebot3 Burger running ROS Noetic and Ubuntu 20.04
+- TurtleBot3 Burger running ROS Noetic and Ubuntu 20.04
 - Monitor + HDMI cable
 - USB Keyboard
 - PC running Ubuntu 20.04
@@ -134,12 +134,12 @@ On the PC, do the following:
         
         >> source ~/.bashrc
     
-9. Download the usb camera package `cv_camera` if not already present on the Turtlebot3 so we can use the camera. 
+9. Download the usb camera package `cv_camera` if not already present on the TurtleBot3 so we can use the camera. 
 
         >> sudo apt install ros-noetic-cv-camera
 
     
-10. Create a launch file that starts the camera node along with the core Turtlebot sensors. See `src/follower/follower.launch` in this repo for the file to add. Additionally, make sure to add an appropiate `CMakeLists.txt` and `package.xml` so that the package can be detected. For the launch commands in [Run Instructions](#run-instructions) to function properly, be sure to set up the directory as follows:
+10. Create a launch file that starts the camera node along with the core TurtleBot sensors. See `src/follower/follower.launch` in this repo for the file to add. Additionally, make sure to add an appropiate `CMakeLists.txt` and `package.xml` so that the package can be detected. For the launch commands in [Run Instructions](#run-instructions) to function properly, be sure to set up the directory as follows:
 
         catkin_ws/
             src/
