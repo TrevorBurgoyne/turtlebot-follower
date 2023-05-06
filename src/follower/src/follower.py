@@ -15,13 +15,14 @@ class Follower():
     def __init__(
         self, 
         rate: int = 50,
-        speed: float = 1,
-        spin_speed: float = 2,
+        speed: float = 0,
+        spin_speed: float = 0,
     ):
         """Initialize the following algorithm params."""
         self.rate = rate
         self.speed = speed 
         self.spin_speed = spin_speed
+        self.last_landmark = None
 
         # Robot states
         self.moving = False
@@ -43,7 +44,6 @@ class Follower():
         current_frame = br.imgmsg_to_cv2(msg)
         cv_image_array = np.array(current_frame, dtype = np.dtype('f8'))
         cv_image_norm = cv2.normalize(cv_image_array, None, 0, 1, cv2.NORM_MINMAX)
-        print(cv_image_norm.shape)
         
         # Run Pose Detection
         # frame = cv2.cvtColor(current_frame, cv2.COLOR_BGR2RGB)
@@ -56,18 +56,37 @@ class Follower():
         frame_height, frame_width, _ =  frame.shape
         
         # Resize the frame while keeping the aspect ratio.
-        frame = cv2.resize(frame, (int(frame_width * (640 / frame_height)), 640))
+        frame = cv2.resize(frame, (int(frame_width * (900 / frame_height)), 900))
         
         # Perform Pose landmark detection.
         frame, landmarks = self.detectPose(frame, self.pose_video, display=False)
+        # print(landmarks)
         
         # Perform the pose classification.
-        if landmarks:
-            self.classifyPose(landmarks, frame, display=False)
-
+        label = None
+        if not self.moving and landmarks:
+            _, label = self.classifyPose(landmarks, frame, display=False)
+        elif landmarks and len(landmarks) > 10:
+            self.speed = 0.3
+            landmark = landmarks[0][0]
+            print(landmark)
+            kp = 0.003
+            kd = 0.001
+            if self.last_landmark is not None:
+                derivative = (landmark-self.last_landmark)
+            else:
+                derivative = 0
+            self.spin_speed = (kp*(landmark-480)) + kd*(derivative)
+            self.last_landmark = landmark
+            print(f"Speed: {self.spin_speed}, kp*{landmark-480}, kd*{derivative}")
+        else:
+            self.spin_speed = np.sign(self.spin_speed) * 0.3
+            self.speed = 0
         # Display the frame.
         cv2.imshow('Pose Detection', frame)
         cv2.waitKey(1)
+        if label == 'T Pose':
+            self.moving = True
 
 
     def detectPose(self, image, pose, display=True):
@@ -247,9 +266,8 @@ class Follower():
 
     def moveForward(self):
         """Move the robot forward if it should be moving."""
-        if self.moving:
-            self.com.linear.x = self.speed
-            self.com.angular.z = 0
+        self.com.linear.x = self.speed
+        self.com.angular.z = self.spin_speed
 
 
     def main_control_loop(self):
@@ -269,6 +287,8 @@ class Follower():
         
         while not rospy.is_shutdown():
             # Here's where we publish the current commands.
+            if self.moving:
+                self.moveForward()
             cmd_vel_pub.publish(self.com)
             # Sleep for as long as needed to achieve the loop rate.
             rate.sleep()
