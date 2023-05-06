@@ -21,17 +21,24 @@ The following instructions assume you have already set up your Remote PC and Tur
         password:
         >> turtlebot
 
-4. Prepare the robot to receive commands by bringing up the robot:
+4. Prepare the robot to receive commands by bringing up the robot. If this if the first time running, ensure the local packages are ready via:
 
         >> cd catkin_ws
         >> catkin_make
         >> source devel/setup.bash
-        >> export TURTLEBOT3_MODEL=burger
+
+   If that is already present, just run:
+
         >> roslaunch follower follower.launch
 
-   The launch command assumes that the Turtlebot directory is setup with the `follower` package as described in the Turtlebot configuration [instuctions](#configure-the-turtlebot3).
+   This command starts the camera. The launch command assumes that the Turtlebot directory is setup with the `follower` package as described in the Turtlebot configuration [instuctions](#configure-the-turtlebot3).
 
-5. In another Remote PC terminal, navigate to `turtlebot-follower/` and run:
+5. In another window, connect to the Turtlebot again and run the standard bringup:
+
+        >> export TURTLEBOT3_MODEL=burger
+        >> roslaunch turtlebot3_bringup turtlebot3_robot.launch
+
+6. In another Remote PC terminal, navigate to `turtlebot-follower/` and run:
 
         >> catkin_make
         >> source devel/setup.bash
