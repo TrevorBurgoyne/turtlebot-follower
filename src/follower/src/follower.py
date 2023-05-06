@@ -158,7 +158,7 @@ class Follower():
         return angle
     
 
-    def classifyPose(self, landmarks, output_image, display=False) -> Tuple[np.ndarray, str]]:
+    def classifyPose(self, landmarks, output_image, display=False) -> Tuple[np.ndarray, str]:
         '''
         This function classifies yoga poses depending upon the angles of various body joints.
         Args:
