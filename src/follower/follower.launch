@@ -1,8 +1,8 @@
 <?xml version`="1.0" encoding="UTF-8"?>
 <launch>
     <!-- Start the main system -->
-    <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
-    <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch"/>
+    <!-- <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
+    <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch"/> -->
     <!-- Start USB Camera -->
     <node pkg="cv_camera" type="cv_camera_node" name="cv_camera" output="screen"/>
     <node pkg="tf" type="static_transform_publisher" name="camera_frames_pub" args="0.05 0.0 0.1 0 0 0 /base_link /camera 35"/>

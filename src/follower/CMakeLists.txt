@@ -165,3 +165,7 @@ include_directories(
 catkin_install_python(PROGRAMS src/follower.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )  
+
+catkin_install_python(PROGRAMS src/follower2.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)  
