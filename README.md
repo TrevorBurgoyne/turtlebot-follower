@@ -1,6 +1,8 @@
 # turtlebot-follower
 Gesture-recognition-activated person following using a visual camera on a TurtleBot3 Burger.
 
+Video demonstration [here](https://drive.google.com/file/d/1U0_3GYiB_yI21C0WFxve9MOnJCA936No/view?usp=share_link).
+
 # Run Instructions
 Note: Be sure to run this command in every terminal wherein you want to run ros commands. This can be set up to occur automatically by following the steps [here](https://answers.ros.org/question/206876/how-often-do-i-need-to-source-setupbash/).
 
